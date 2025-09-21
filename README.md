@@ -1,4 +1,4 @@
-# Blog Backoffice
+# Laravel back-office with a Vue + Vuetify 
 
 A Laravel back-office with a Vue + Vuetify frontend that integrates with a WordPress blog.  
 Admins can manage WordPress posts (CRUD) and assign a priority to each post, stored only in Laravel.
