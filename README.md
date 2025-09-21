@@ -17,7 +17,7 @@ Admins can manage WordPress posts (CRUD) and assign a priority to each post, sto
   - Create, edit, and delete posts (synced to WordPress)
   - Assign and sort posts by a **priority** field (Laravel-only)
   - Sync changes automatically from WordPress
-  - 
+  - Wordpress Site URL :] (https://abiproject3.wordpress.com)
   - ▶️ [Watch the video on YouTube](https://www.youtube.com/watch?v=pG5QZNYZmho)
 
 
