@@ -31,8 +31,7 @@ Admins can manage WordPress posts (CRUD) and assign a priority to each post, sto
 - Composer
 - Node.js 20+
 - MySQL
-- WordPress.com account with a blog site
-- Wordpress Site (Approved WordPress  Users only) :] (https://abiproject3.wordpress.com)
+- Wordpress account (Approved WordPress  Users only) :] (https://abiproject3.wordpress.com)
 
 ---
 
