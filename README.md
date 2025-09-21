@@ -32,7 +32,7 @@ Admins can manage WordPress posts (CRUD) and assign a priority to each post, sto
 - Node.js 20+
 - MySQL
 - WordPress.com account with a blog site
-- Wordpress Site URL : abiproject3.wordpress.com
+- Wordpress Site (Approved WordPress  Users only) :] (https://abiproject3.wordpress.com)
 
 ---
 
