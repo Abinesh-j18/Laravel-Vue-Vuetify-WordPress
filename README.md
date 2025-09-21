@@ -1,66 +1,193 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blog Backoffice
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel back-office with a Vue + Vuetify frontend that integrates with a WordPress blog.  
+Admins can manage WordPress posts (CRUD) and assign a priority to each post, stored only in Laravel.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Stack:** Laravel 12, Vue 3, Vuetify 3, WordPress REST API
+- **Purpose:** Provide a secure back-office to manage WordPress blog posts with additional Laravel-only features.
+- **Features:**
+  - WordPress OAuth login (only admins)
+  - View all posts from WordPress (published + draft)
+  - Create, edit, and delete posts (synced to WordPress)
+  - Assign and sort posts by a **priority** field (Laravel-only)
+  - Sync changes automatically from WordPress
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP 8.2+
+- Composer
+- Node.js 20+
+- MySQL
+- WordPress.com account with a blog site
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Project Setup (Step-by-Step)
 
-## Laravel Sponsors
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/blog-backoffice.git
+cd blog-backoffice
+```
+### 2. Add a .gitignore
+Create a .gitignore file in the project root with at least these lines:
+```bash
+/vendor
+/node_modules
+/public/build
+/.env
+```
+### 3. Install dependencies
+Backend:
+```bash
+composer install
+```
+Frontend:
+```bash
+npm install
+```
+### 4. Configure environment
+```bash
+cp .env.example .env
+```
+Edit .env and set your database and WordPress OAuth credentials:
+```bash
+APP_NAME=BlogBackoffice
+APP_URL=http://127.0.0.1:8000
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=blog_backoffice
+DB_USERNAME=root
+DB_PASSWORD=
 
-### Premium Partners
+WPCLIENT_ID=YOUR_WORDPRESS_CLIENT_ID
+WPCLIENT_SECRET=YOUR_WORDPRESS_CLIENT_SECRET
+WP_REDIRECT_URI=http://127.0.0.1:8000/auth/callback
+```
+### 5. Setup the database
+### 1.Open phpMyAdmin or MySQL CLI and create a database:
+```bash
+CREATE DATABASE blog_backoffice;
+```
+### 2.Run Laravel migrations:
+```bash
+php artisan migrate
+```
+### 6. Build frontend
+- Development (hot reload):
+```bash
+npm run dev
+```
+- Production build:
+```bash
+npm run build
+```
+### 7. Run Laravel server
+```bash
+php artisan serve
+```
+Visit: http://127.0.0.1:8000
+---
+### Important URLs
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- OAuth Redirect (WordPress login / token refresh):
+  http://127.0.0.1:8000/auth/redirect
+  Use this whenever the WordPress token is missing or expired.
 
-## Contributing
+- Back-office Home:
+  http://127.0.0.1:8000/backoffice/blog
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Root URL (redirects to back-office):
+  http://127.0.0.1:8000
+---
+### Usage
+### Login
 
-## Code of Conduct
+- Click login → WordPress OAuth page.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Only WordPress administrators can log in.
 
-## Security Vulnerabilities
+### Blog Management
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- View posts: All posts from WordPress are listed.
 
-## License
+- Create post: Click Add New Post, fill in the fields, save.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Edit post: Click Edit, modify fields, save.
+
+- Delete post: Click Delete.
+
+- Set priority: Enter a number in the priority field → Save.
+
+- Sorting: Posts can be sorted by priority (optional in UI).
+---
+  ### Project Structure
+
+- Backend (Laravel)
+
+  - app/Http/Controllers/BlogController.php → Handles CRUD + priority
+ 
+  - app/Models/WpToken.php → Stores WordPress OAuth token
+ 
+  - database/migrations → Creates wp_posts & wp_tokens tables with priority column
+
+- Frontend (Vue + Vuetify)
+
+  - resources/js/components/BlogManagement.vue → Main component for managing posts
+ 
+  - resources/js/app.js → Boots Vue
+
+    WordPress Integration
+
+### Uses WordPress REST API v2:
+
+- /wp/v2/sites/{site_slug}/posts
+
+- OAuth authentication for admin users.
+
+- Laravel-only field priority is not synced to WordPress.
+  ---
+### Git & Commits
+Initialize Git repo:
+  ```bash
+  git init
+  git add .
+  git commit -m "Initial commit"
+  ```
+Push to GitHub:
+```bash
+git branch -M main
+git remote add origin https://github.com/your-username/blog-backoffice.git
+git push -u origin main
+```
+
+Incremental commits are recommended:
+```bash
+git add .
+git commit -m "Add BlogManagement.vue with priority support"
+git push
+```
+---
+### Notes
+
+Error Handling: API errors show alerts in the back-office.
+
+Laravel-only features: Priority field exists only in Laravel DB.
+
+Security: OAuth ensures only WordPress admin users can access the back-office.
+---
+### Author
+
+Your Name: Abinesh Sivakumar
+
+Contact: your.email@example.com
+
+GitHub: https://github.com/your-username
