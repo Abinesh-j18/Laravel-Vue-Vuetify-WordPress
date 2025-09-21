@@ -5,7 +5,9 @@ Admins can manage WordPress posts (CRUD) and assign a priority to each post, sto
 
 ---
 
-## Project Overview
+## Project Overview 
+
+▶️ [Visit My Website]([https://www.youtube.com/watch?v=pG5QZNYZmho](https://abinesh.me/))
 
 - **Stack:** Laravel 12, Vue 3, Vuetify 3, WordPress REST API
 - **Purpose:** Provide a secure back-office to manage WordPress blog posts with additional Laravel-only features.
@@ -15,6 +17,7 @@ Admins can manage WordPress posts (CRUD) and assign a priority to each post, sto
   - Create, edit, and delete posts (synced to WordPress)
   - Assign and sort posts by a **priority** field (Laravel-only)
   - Sync changes automatically from WordPress
+  - 
   - ▶️ [Watch the video on YouTube](https://www.youtube.com/watch?v=pG5QZNYZmho)
 
 
