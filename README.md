@@ -188,6 +188,6 @@ Security: OAuth ensures only WordPress admin users can access the back-office.
 
 Your Name: Abinesh Sivakumar
 
-Contact: infoabinesh@.com
+Contact: infoabinesh@gmail.com
 
 GitHub: https://github.com/your-username
