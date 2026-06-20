@@ -126,7 +126,7 @@ Visit: https://abinesh.me/
 
 - View posts: All posts from WordPress are listed.
 
-- Create post: Click Add New Post, fill in the fields, save.
+- Create post: Click Add New Post, fill in the fields,save.
 
 - Edit post: Click Edit, modify fields, save.
 
